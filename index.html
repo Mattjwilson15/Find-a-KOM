@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <title>Segment Hunter</title>
+    <div class="container-header">
+      <div class="titles">
+        <h1>Work Out Planner</h1>
+        <h2>Powered By</h2>
+        <img class="strava" src="1280px-Strava_Logo.svg.png" />
+      </div>
+    </div>
+  </head>
+  <body>
+    <div class="content">
+      <section class="input-info">
+        <input
+          type="number"
+          placeholder="Time"
+          class="inputset1"
+          id="effortTime"
+        />
+        <input
+          type="number"
+          placeholder="Power"
+          class="inputset1"
+          id="effortPower"
+        />
+        <input
+          type="number"
+          placeholder="Min Elevation Gain"
+          class="inputset1"
+          id="minElevation"
+        />
+        <input
+          type="number"
+          placeholder="Max Elevation Gain"
+          class="inputset1"
+          id="maxElevation"
+        />
+        <input
+          type="number"
+          placeholder="Total Weight"
+          class="inputset1"
+          id="effortPower"
+        />
+        <div class="segmentType">
+          <label
+            ><input class="terrain" type="checkbox" id="climb" />Climb</label
+          >
+          <label><input class="terrain" type="checkbox" id="flat" />Flat</label>
+        </div>
+        <button class="btn-search" id="searchSegments">search</button>
+        <button class="btn-search" id="test">Test</button>
+      </section>
+      <div class="map" id="map"></div>
+    </div>
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="Polyline.encoded.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

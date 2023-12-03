@@ -1,0 +1,1394 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Strava API v3",
+        "description": "The [Swagger Playground](https://developers.strava.com/playground) is the easiest way to familiarize yourself with the Strava API by submitting HTTP requests and observing the responses before you write any client code. It will show what a response will look like with different endpoints depending on the authorization scope you receive from your athletes. To use the Playground, go to https://www.strava.com/settings/api and change your u201cAuthorization Callback Domainu201d to developers.strava.com. Please note, we only support Swagger 2.0. There is a known issue where you can only select one scope at a time. For more information, please check the section u201cclient codeu201d at https://developers.strava.com/docs.",
+        "termsOfService": "http://exmple.com/license/",
+        "version": "3.0.0",
+        "contact": {
+            "name": "No Contact",
+            "url": "http://example.com",
+            "email": "email@example.com"
+        },
+        "license": {
+            "name": "No License",
+            "url": "http://example.com"
+        }
+    },
+    "servers": [
+        {
+            "url": "httpswww.strava.com/api/v3"
+        },
+        {
+            "url": "http://www.strava.com/api/v3"
+        }
+    ],
+    "paths": {
+        "/athletes/{id}/stats": {
+            "get": {
+                "summary": "Get Athlete Stats",
+                "description": "Returns the activity stats of an athlete.",
+                "operationId": "getStats",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ]
+            }
+        },
+        "/athlete": {
+            "get": {
+                "summary": "Get Authenticated Athlete",
+                "description": "Returns the currently authenticated athlete. Tokens with profile:read_all scope will receive a detailed athlete representation; all others will receive a summary representation.",
+                "operationId": "getLoggedInAthlete",
+                "parameters": []
+            }
+        },
+        "/athlete/zones": {
+            "get": {
+                "summary": "Get Zones",
+                "description": "Returns the the authenticated athlete's heart rate and power zones. Requires profile:read_all.",
+                "operationId": "getLoggedInAthleteZones",
+                "parameters": []
+            }
+        },
+        "/segments/{id}": {
+            "get": {
+                "summary": "Get Segment",
+                "description": "Returns the specified segment. read_all scope required in order to retrieve athlete-specific segment information, or to retrieve private segments.",
+                "operationId": "getSegmentById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the segment.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ]
+            }
+        },
+        "/segments/starred": {
+            "get": {
+                "summary": "List Starred Segments",
+                "description": "List of the authenticated athlete's starred segments. Private segments are filtered out unless requested by a token with read_all scope.",
+                "operationId": "getLoggedInAthleteStarredSegments",
+                "parameters": [
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/segments/{id}/starred": {
+            "put": {
+                "summary": "Star Segment",
+                "description": "Stars/Unstars the given segment for the authenticated athlete. Requires profile:write scope.",
+                "operationId": "starSegment",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "starred",
+                        "in": "formData",
+                        "description": "If true, star the segment; if false, unstar the segment.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the segment to star.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "starred",
+                        "in": "formData",
+                        "description": "If true, star the segment; if false, unstar the segment.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ]
+            }
+        },
+        "/segments/{id}/leaderboard": {
+            "get": {
+                "summary": "Get Segment Leaderboard",
+                "description": "Returns the specified segment leaderboard.",
+                "operationId": "getLeaderboardBySegmentId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "gender",
+                        "in": "query",
+                        "description": "Filter by gender.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "age_group",
+                        "in": "query",
+                        "description": "Summit Feature. Filter by age group.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "weight_class",
+                        "in": "query",
+                        "description": "Summit Feature. Filter by weight class.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "following",
+                        "in": "query",
+                        "description": "Filter by friends of the authenticated athlete.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "club_id",
+                        "in": "query",
+                        "description": "Filter by club.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "date_range",
+                        "in": "query",
+                        "description": "Filter by date range.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "context_entries",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/segments/{id}/all_efforts": {
+            "get": {
+                "summary": "List Segment Efforts",
+                "description": "Returns a set of the authenticated athlete's segment efforts for a given segment.",
+                "operationId": "getEffortsBySegmentId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/segments/explore": {
+            "get": {
+                "summary": "Explore segments",
+                "description": "Returns the top 10 segments matching a specified query.",
+                "operationId": "exploreSegments",
+                "parameters": [
+                    {
+                        "name": "bounds",
+                        "in": "query",
+                        "description": "The latitude and longitude for two points describing a rectangular boundary for the search: [southwest corner latitutde, southwest corner longitude, northeast corner latitude, northeast corner longitude]",
+                        "schema": {
+                            "type": "array"
+                        }
+                    },
+                    {
+                        "name": "activity_type",
+                        "in": "query",
+                        "description": "Desired activity type.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "min_cat",
+                        "in": "query",
+                        "description": "The minimum climbing category.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "max_cat",
+                        "in": "query",
+                        "description": "The maximum climbing category.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "bounds",
+                        "in": "query",
+                        "description": "The latitude and longitude for two points describing a rectangular boundary for the search: [southwest corner latitutde, southwest corner longitude, northeast corner latitude, northeast corner longitude]",
+                        "schema": {
+                            "type": "array"
+                        }
+                    },
+                    {
+                        "name": "activity_type",
+                        "in": "query",
+                        "description": "Desired activity type.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "min_cat",
+                        "in": "query",
+                        "description": "The minimum climbing category.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "max_cat",
+                        "in": "query",
+                        "description": "The maximum climbing category.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ]
+            }
+        },
+        "/segment_efforts/{id}": {
+            "get": {
+                "summary": "Get Segment Effort",
+                "description": "Returns a segment effort from an activity that is owned by the authenticated athlete.",
+                "operationId": "getSegmentEffortById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the segment effort.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ]
+            }
+        },
+        "/running_races/{id}": {
+            "get": {
+                "summary": "Get Running Race",
+                "description": "Returns a running race for a given identifier.",
+                "operationId": "getRunningRaceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the running race.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ]
+            }
+        },
+        "/running_races": {
+            "get": {
+                "summary": "List Running Races",
+                "description": "Returns a list running races based on a set of search criteria.",
+                "operationId": "getRunningRaces",
+                "parameters": [
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "description": "Filters the list by a given year.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "description": "Filters the list by a given year.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ]
+            }
+        },
+        "/activities": {
+            "post": {
+                "summary": "Create an Activity",
+                "description": "Creates a manual activity for an athlete, requires activity:write scope.",
+                "operationId": "createActivity",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "The name of the activity.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": "Type of activity. For example - Run, Ride etc.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start_date_local",
+                        "in": "formData",
+                        "description": "ISO 8601 formatted date time.",
+                        "schema": {
+                            "type": "datetime"
+                        }
+                    },
+                    {
+                        "name": "elapsed_time",
+                        "in": "formData",
+                        "description": "In seconds.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Description of the activity.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "distance",
+                        "in": "formData",
+                        "description": "In meters.",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "trainer",
+                        "in": "formData",
+                        "description": "Set to 1 to mark as a trainer activity.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "photo_ids",
+                        "in": "formData",
+                        "description": "List of native photo ids to attach to the activity.",
+                        "schema": {
+                            "type": "string[]"
+                        }
+                    },
+                    {
+                        "name": "commute",
+                        "in": "formData",
+                        "description": "Set to 1 to mark as commute.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "The name of the activity.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": "Type of activity. For example - Run, Ride etc.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start_date_local",
+                        "in": "formData",
+                        "description": "ISO 8601 formatted date time.",
+                        "schema": {
+                            "type": "datetime"
+                        }
+                    },
+                    {
+                        "name": "elapsed_time",
+                        "in": "formData",
+                        "description": "In seconds.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Description of the activity.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "distance",
+                        "in": "formData",
+                        "description": "In meters.",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "trainer",
+                        "in": "formData",
+                        "description": "Set to 1 to mark as a trainer activity.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "commute",
+                        "in": "formData",
+                        "description": "Set to 1 to mark as commute.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ]
+            }
+        },
+        "/activities/{id}": {
+            "get": {
+                "summary": "Get Activity",
+                "description": "Returns the given activity that is owned by the authenticated athlete. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
+                "operationId": "getActivityById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "include_all_efforts",
+                        "in": "query",
+                        "description": "To include all segments efforts.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the activity.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "include_all_efforts",
+                        "in": "query",
+                        "description": "To include all segments efforts.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ]
+            }
+        },
+        "/athlete/activities": {
+            "get": {
+                "summary": "List Athlete Activities",
+                "description": "Returns the activities of an athlete for a specific identifier. Requires activity:read. Only Me activities will be filtered out unless requested by a token with activity:read_all.",
+                "operationId": "getLoggedInAthleteActivities",
+                "parameters": [
+                    {
+                        "name": "before",
+                        "in": "query",
+                        "description": "An epoch timestamp to use for filtering activities that have taken place before a certain time.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "after",
+                        "in": "query",
+                        "description": "An epoch timestamp to use for filtering activities that have taken place after a certain time.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/activities/{id}/laps": {
+            "get": {
+                "summary": "List Activity Laps",
+                "description": "Returns the laps of an activity identified by an identifier. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
+                "operationId": "getLapsByActivityId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ]
+            }
+        },
+        "/activities/{id}/zones": {
+            "get": {
+                "summary": "Get Activity Zones",
+                "description": "Summit Feature. Returns the zones of a given activity. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
+                "operationId": "getZonesByActivityId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ]
+            }
+        },
+        "/activities/{id}/comments": {
+            "get": {
+                "summary": "List Activity Comments",
+                "description": "Returns the comments on the given activity. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
+                "operationId": "getCommentsByActivityId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/activities/{id}/kudos": {
+            "get": {
+                "summary": "List Activity Kudoers",
+                "description": "Returns the athletes who kudoed an activity identified by an identifier. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
+                "operationId": "getKudoersByActivityId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/clubs/{id}": {
+            "get": {
+                "summary": "Get Club",
+                "description": "Returns a given club using its identifier.",
+                "operationId": "getClubById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ]
+            }
+        },
+        "/clubs/{id}/members": {
+            "get": {
+                "summary": "List Club Members",
+                "description": "Returns a list of the athletes who are members of a given club.",
+                "operationId": "getClubMembersById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/clubs/{id}/admins": {
+            "get": {
+                "summary": "List Club Administrators.",
+                "description": "Returns a list of the administrators of a given club.",
+                "operationId": "getClubAdminsById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/clubs/{id}/activities": {
+            "get": {
+                "summary": "List Club Activities",
+                "description": "Retrieve recent activities from members of a specific club. The authenticated athlete must belong to the requested club in order to hit this endpoint. Pagination is supported. Athlete profile visibility is respected for all activities.",
+                "operationId": "getClubActivitiesById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/athlete/clubs": {
+            "get": {
+                "summary": "List Athlete Clubs",
+                "description": "Returns a list of the clubs whose membership includes the authenticated athlete.",
+                "operationId": "getLoggedInAthleteClubs",
+                "parameters": [
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/gear/{id}": {
+            "get": {
+                "summary": "Get Equipment",
+                "description": "Returns an equipment using its identifier.",
+                "operationId": "getGearById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ]
+            }
+        },
+        "/routes/{id}": {
+            "get": {
+                "summary": "Get Route",
+                "description": "Returns a route using its identifier. Requires read_all scope for private routes.",
+                "operationId": "getRouteById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ]
+            }
+        },
+        "/athletes/{id}/routes": {
+            "get": {
+                "summary": "List Athlete Routes",
+                "description": "Returns a list of the routes created by the authenticated athlete using their athlete ID. Private routes are filtered out unless requested by a token with read_all scope.",
+                "operationId": "getRoutesByAthleteId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/routes/{id}/export_gpx": {
+            "get": {
+                "summary": "Export Route GPX",
+                "description": "Returns a GPX file of the route. Requires read_all scope for private routes.",
+                "operationId": "getRouteAsGPX",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ]
+            }
+        },
+        "/routes/{id}/export_tcx": {
+            "get": {
+                "summary": "Export Route TCX",
+                "description": "Returns a TCX file of the route. Requires read_all scope for private routes.",
+                "operationId": "getRouteAsTCX",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ]
+            }
+        },
+        "/uploads": {
+            "post": {
+                "summary": "Upload Activity",
+                "description": "Uploads a new data file to create an activity from. Requires activity:write scope.",
+                "operationId": "createUpload",
+                "parameters": [
+                    {
+                        "name": "file",
+                        "in": "formData",
+                        "description": "The uploaded file.",
+                        "schema": {
+                            "type": "file"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "The name of the activity.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Description of the activity.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "trainer",
+                        "in": "formData",
+                        "description": "Set to 1 to mark as a trainer activity.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "commute",
+                        "in": "formData",
+                        "description": "Set to 1 to mark as commute.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "data_type",
+                        "in": "formData",
+                        "description": "The format of the uploaded file.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "external_id",
+                        "in": "formData",
+                        "description": "The desired external identifier of the resulting activity.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/uploads/{uploadId}": {
+            "get": {
+                "summary": "Get Upload",
+                "description": "Returns an upload for a given identifier. Requires activity:write scope.",
+                "operationId": "getUploadById",
+                "parameters": [
+                    {
+                        "name": "uploadId",
+                        "in": "path",
+                        "description": "The identifier of the upload.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ]
+            }
+        },
+        "/activities/{id}/streams": {
+            "get": {
+                "summary": "Get Activity Streams",
+                "description": "Returns the given activity's streams. Requires activity:read scope. Requires activity:read_all scope for Only Me activities.",
+                "operationId": "getActivityStreams",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "keys",
+                        "in": "query",
+                        "description": "Desired stream types.",
+                        "schema": {
+                            "type": "array"
+                        }
+                    },
+                    {
+                        "name": "key_by_type",
+                        "in": "query",
+                        "description": "Must be true.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ]
+            }
+        },
+        "/segment_efforts/{id}/streams": {
+            "get": {
+                "summary": "Get Segment Effort Streams",
+                "description": "Returns a set of streams for a segment effort completed by the authenticated athlete. Requires read_all scope.",
+                "operationId": "getSegmentEffortStreams",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "keys",
+                        "in": "query",
+                        "description": "Desired stream types.",
+                        "schema": {
+                            "type": "array"
+                        }
+                    },
+                    {
+                        "name": "key_by_type",
+                        "in": "query",
+                        "description": "Must be true.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ]
+            }
+        },
+        "/segments/{id}/streams": {
+            "get": {
+                "summary": "Get Segment Streams",
+                "description": "Returns the given segment's streams. Requires read_all scope for private segments.",
+                "operationId": "getSegmentStreams",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "keys",
+                        "in": "query",
+                        "description": "Desired stream types.",
+                        "schema": {
+                            "type": "array"
+                        }
+                    },
+                    {
+                        "name": "key_by_type",
+                        "in": "query",
+                        "description": "Must be true.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ]
+            }
+        },
+        "/routes/{id}/streams": {
+            "get": {
+                "summary": "Get Route Streams",
+                "description": "Returns the given route's streams. Requires read_all scope for private routes.",
+                "operationId": "getRouteStreams",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ]
+            }
+        },
+        "/segment_efforts": {
+            "get": {
+                "summary": "List Segment Efforts",
+                "description": "Returns a set of the authenticated athletes segment efforts for a given segment.  Requires subscription.",
+                "operationId": "getEffortsBySegmentId",
+                "parameters": [
+                    {
+                        "name": "segment_id",
+                        "in": "query",
+                        "description": "The identifier of the segment.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "start_date_local",
+                        "in": "query",
+                        "description": "ISO 8601 formatted date time.",
+                        "schema": {
+                            "type": "datetime"
+                        }
+                    },
+                    {
+                        "name": "end_date_local",
+                        "in": "query",
+                        "description": "ISO 8601 formatted date time.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "id": {
+                "type": "integer",
+                "description": "The identifier of the athlete. Must match the authenticated athlete."
+            },
+            "No Name": {
+                "type": "string",
+                "description": ""
+            },
+            "https://developers.strava.com/swagger/activity_stats.json#/ActivityStats": {
+                "type": "object",
+                "description": "Reference"
+            },
+            "https://developers.strava.com/swagger/fault.json#/Fault": {
+                "type": "object",
+                "description": "Reference"
+            },
+            "https://developers.strava.com/swagger/athlete.json#/DetailedAthlete": {
+                "type": "object",
+                "description": "Reference"
+            },
+            "weight": {
+                "type": "number",
+                "description": "The weight of the athlete in kilograms."
+            },
+            "https://developers.strava.com/swagger/zones.json#/Zones": {
+                "type": "object",
+                "description": "Reference"
+            },
+            "https://developers.strava.com/swagger/segment.json#/DetailedSegment": {
+                "type": "object",
+                "description": "Reference"
+            },
+            "starred": {
+                "type": "boolean",
+                "description": "If true, star the segment; if false, unstar the segment."
+            },
+            "gender": {
+                "type": "string",
+                "description": "Filter by gender."
+            },
+            "age_group": {
+                "type": "string",
+                "description": "Summit Feature. Filter by age group."
+            },
+            "weight_class": {
+                "type": "string",
+                "description": "Summit Feature. Filter by weight class."
+            },
+            "following": {
+                "type": "boolean",
+                "description": "Filter by friends of the authenticated athlete."
+            },
+            "club_id": {
+                "type": "integer",
+                "description": "Filter by club."
+            },
+            "date_range": {
+                "type": "string",
+                "description": "Filter by date range."
+            },
+            "context_entries": {
+                "type": "integer",
+                "description": ""
+            },
+            "https://developers.strava.com/swagger/segment_leaderboard.json#/SegmentLeaderboard": {
+                "type": "object",
+                "description": "Reference"
+            },
+            "bounds": {
+                "type": "array",
+                "description": "The latitude and longitude for two points describing a rectangular boundary for the search: [southwest corner latitutde, southwest corner longitude, northeast corner latitude, northeast corner longitude]"
+            },
+            "activity_type": {
+                "type": "string",
+                "description": "Desired activity type."
+            },
+            "min_cat": {
+                "type": "integer",
+                "description": "The minimum climbing category."
+            },
+            "max_cat": {
+                "type": "integer",
+                "description": "The maximum climbing category."
+            },
+            "https://developers.strava.com/swagger/segment.json#/ExplorerResponse": {
+                "type": "object",
+                "description": "Reference"
+            },
+            "https://developers.strava.com/swagger/segment_effort.json#/DetailedSegmentEffort": {
+                "type": "object",
+                "description": "Reference"
+            },
+            "https://developers.strava.com/swagger/running_race.json#/RunningRace": {
+                "type": "object",
+                "description": "Reference"
+            },
+            "year": {
+                "type": "integer",
+                "description": "Filters the list by a given year."
+            },
+            "name": {
+                "type": "string",
+                "description": "The name of the activity."
+            },
+            "type": {
+                "type": "string",
+                "description": "Type of activity. For example - Run, Ride etc."
+            },
+            "start_date_local": {
+                "type": "datetime",
+                "description": "ISO 8601 formatted date time."
+            },
+            "elapsed_time": {
+                "type": "integer",
+                "description": "In seconds."
+            },
+            "description": {
+                "type": "string",
+                "description": "Description of the activity."
+            },
+            "distance": {
+                "type": "number",
+                "description": "In meters."
+            },
+            "trainer": {
+                "type": "integer",
+                "description": "Set to 1 to mark as a trainer activity."
+            },
+            "photo_ids": {
+                "type": "string[]",
+                "description": "List of native photo ids to attach to the activity."
+            },
+            "commute": {
+                "type": "integer",
+                "description": "Set to 1 to mark as commute."
+            },
+            "https://developers.strava.com/swagger/activity.json#/DetailedActivity": {
+                "type": "object",
+                "description": "Reference"
+            },
+            "include_all_efforts": {
+                "type": "boolean",
+                "description": "To include all segments efforts."
+            },
+            "https://developers.strava.com/swagger/activity.json#/UpdatableActivity": {
+                "type": "object",
+                "description": "Reference"
+            },
+            "before": {
+                "type": "integer",
+                "description": "An epoch timestamp to use for filtering activities that have taken place before a certain time."
+            },
+            "after": {
+                "type": "integer",
+                "description": "An epoch timestamp to use for filtering activities that have taken place after a certain time."
+            },
+            "https://developers.strava.com/swagger/club.json#/DetailedClub": {
+                "type": "object",
+                "description": "Reference"
+            },
+            "https://developers.strava.com/swagger/gear.json#/DetailedGear": {
+                "type": "object",
+                "description": "Reference"
+            },
+            "https://developers.strava.com/swagger/route.json#/Route": {
+                "type": "object",
+                "description": "Reference"
+            },
+            "file": {
+                "type": "file",
+                "description": "The uploaded file."
+            },
+            "data_type": {
+                "type": "string",
+                "description": "The format of the uploaded file."
+            },
+            "external_id": {
+                "type": "string",
+                "description": "The desired external identifier of the resulting activity."
+            },
+            "https://developers.strava.com/swagger/upload.json#/Upload": {
+                "type": "object",
+                "description": "Reference"
+            },
+            "uploadId": {
+                "type": "integer",
+                "description": "The identifier of the upload."
+            },
+            "keys": {
+                "type": "array",
+                "description": "Desired stream types."
+            },
+            "key_by_type": {
+                "type": "boolean",
+                "description": "Must be true."
+            },
+            "https://developers.strava.com/swagger/stream.json#/StreamSet": {
+                "type": "object",
+                "description": "Reference"
+            },
+            "segment_id": {
+                "type": "integer",
+                "description": "The identifier of the segment."
+            },
+            "end_date_local": {
+                "type": "string",
+                "description": "ISO 8601 formatted date time."
+            }
+        }
+    }
+}
